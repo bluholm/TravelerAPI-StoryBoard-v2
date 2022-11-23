@@ -13,6 +13,12 @@ final class TranslateLogic {
     private let apiKey = "24e4c008-11b5-3633-cfcf-25adfbedf2cf:fx"
     private let baseUrl = "https://api-free.deepl.com/v2/translate"
     
+    private var session = URLSession(configuration: .default)
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    
     func getTextTranslated(text: String, completionHandler: @escaping (Result<Translate, NetworkError>) -> Void){
         
         var parameters: [(String,String)] {
@@ -27,7 +33,7 @@ final class TranslateLogic {
         
         let request = URLRequest(url: url)
         
-        let session = URLSession(configuration: .default)
+        
         let task = session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {

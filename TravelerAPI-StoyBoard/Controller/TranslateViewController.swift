@@ -16,7 +16,7 @@ final class TranslateViewController : UIViewController {
     @IBOutlet var labelCopied: UILabel!
     @IBOutlet var labelTextTranslated: UITextView!
     
-    let model = TranslateLogic()
+    let model = TranslateLogic(session: URLSession(configuration: .default))
     
     //MARK: Life Cycle Method
     override func viewDidLoad() {
