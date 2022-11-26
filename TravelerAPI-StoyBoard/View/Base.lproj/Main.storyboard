@@ -12,7 +12,7 @@
         <!--Translation-->
         <scene sceneID="F7c-WH-fEQ">
             <objects>
-                <viewController id="BBU-to-b2g" customClass="TranslateViewController" customModule="TravelerAPI_StoyBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TranslateViewController" id="BBU-to-b2g" customClass="TranslateViewController" customModule="TravelerAPI_StoyBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GnR-0w-dT1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

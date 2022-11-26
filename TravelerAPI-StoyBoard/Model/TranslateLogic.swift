@@ -9,32 +9,30 @@ import Foundation
 
 
 final class TranslateLogic {
+    let urlSession: URLSession
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
     
     private let apiKey = "24e4c008-11b5-3633-cfcf-25adfbedf2cf:fx"
     private let baseUrl = "https://api-free.deepl.com/v2/translate"
-    
-    private var session = URLSession(configuration: .default)
-    
-    init(session: URLSession) {
-        self.session = session
+    var translateText: String = ""
+    var parameters: [(String,String)] {
+        return [
+            ("auth_key", apiKey),
+            ("target_lang","EN"),
+            ("text",translateText)]
     }
     
-    func getTextTranslated(text: String, completionHandler: @escaping (Result<Translate, NetworkError>) -> Void){
+    func getTextTranslated(completionHandler: @escaping (Result<Translate, NetworkError>) -> Void) {
         
-        var parameters: [(String,String)] {
-            return [
-                ("auth_key", apiKey),
-                ("target_lang","EN"),
-                ("text",text)]
-        }
-        
-        guard let translateUrl: URL  = .init (string: baseUrl) else {return}
+       
+        guard let translateUrl: URL  = .init (string: baseUrl) else { return }
         let url: URL = URLEncodable.encode(with: translateUrl, and: parameters)
-        
         let request = URLRequest(url: url)
         
         
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = urlSession.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     completionHandler(.failure(.ErrorNil))

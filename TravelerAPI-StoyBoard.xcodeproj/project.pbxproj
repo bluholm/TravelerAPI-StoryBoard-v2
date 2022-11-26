@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		0E1008F62927468D00435B37 /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1008F52927468D00435B37 /* WeatherLogic.swift */; };
 		0E1008F92927476100435B37 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1008F82927476100435B37 /* Weather.swift */; };
-		0E1009012928425400435B37 /* TravelerAPI_StoyBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1009002928425400435B37 /* TravelerAPI_StoyBoardTests.swift */; };
+		0E1009012928425400435B37 /* TravelerAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1009002928425400435B37 /* TravelerAPITests.swift */; };
 		0E10092C292CC99B00435B37 /* Translate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E10092B292CC99B00435B37 /* Translate.json */; };
 		0E10092E292CD47300435B37 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10092D292CD47300435B37 /* FakeResponseData.swift */; };
-		0E100930292CF99F00435B37 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E10092F292CF99F00435B37 /* URLSessionFake.swift */; };
+		0E100933292DE62B00435B37 /* URLProtocolFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E100932292DE62B00435B37 /* URLProtocolFake.swift */; };
 		0E1AFDD72924EBA500451C9D /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AFDD62924EBA500451C9D /* Symbols.swift */; };
 		0E1AFDD92924F22A00451C9D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AFDD82924F22A00451C9D /* Error.swift */; };
 		0E3FF1A82925FC5300140DB1 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3FF1A72925FC5300140DB1 /* AlertExtension.swift */; };
@@ -47,10 +47,10 @@
 		0E1008F52927468D00435B37 /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		0E1008F82927476100435B37 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		0E1008FE2928425400435B37 /* TravelerAPI-StoyBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TravelerAPI-StoyBoardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E1009002928425400435B37 /* TravelerAPI_StoyBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelerAPI_StoyBoardTests.swift; sourceTree = "<group>"; };
+		0E1009002928425400435B37 /* TravelerAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelerAPITests.swift; sourceTree = "<group>"; };
 		0E10092B292CC99B00435B37 /* Translate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translate.json; sourceTree = "<group>"; };
 		0E10092D292CD47300435B37 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
-		0E10092F292CF99F00435B37 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		0E100932292DE62B00435B37 /* URLProtocolFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolFake.swift; sourceTree = "<group>"; };
 		0E1AFDD62924EBA500451C9D /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		0E1AFDD82924F22A00451C9D /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		0E3FF1A72925FC5300140DB1 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
@@ -104,10 +104,10 @@
 		0E1008FF2928425400435B37 /* TravelerAPI-StoyBoardTests */ = {
 			isa = PBXGroup;
 			children = (
-				0E1009002928425400435B37 /* TravelerAPI_StoyBoardTests.swift */,
 				0E10092B292CC99B00435B37 /* Translate.json */,
+				0E1009002928425400435B37 /* TravelerAPITests.swift */,
 				0E10092D292CD47300435B37 /* FakeResponseData.swift */,
-				0E10092F292CF99F00435B37 /* URLSessionFake.swift */,
+				0E100932292DE62B00435B37 /* URLProtocolFake.swift */,
 			);
 			path = "TravelerAPI-StoyBoardTests";
 			sourceTree = "<group>";
@@ -306,9 +306,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E1009012928425400435B37 /* TravelerAPI_StoyBoardTests.swift in Sources */,
-				0E100930292CF99F00435B37 /* URLSessionFake.swift in Sources */,
+				0E1009012928425400435B37 /* TravelerAPITests.swift in Sources */,
 				0E10092E292CD47300435B37 /* FakeResponseData.swift in Sources */,
+				0E100933292DE62B00435B37 /* URLProtocolFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

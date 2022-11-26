@@ -16,7 +16,8 @@ final class TranslateViewController : UIViewController {
     @IBOutlet var labelCopied: UILabel!
     @IBOutlet var labelTextTranslated: UITextView!
     
-    let model = TranslateLogic(session: URLSession(configuration: .default))
+    //let model = TranslateLogic(session: URLSession(configuration: .default))
+    let model = TranslateLogic()
     
     //MARK: Life Cycle Method
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ final class TranslateViewController : UIViewController {
             presentAlert(message: TypeError.ErrorNil)
             return
         }
+        model.translateText = text
         translateText(text: text)
     }
     
@@ -47,11 +49,9 @@ final class TranslateViewController : UIViewController {
         }
     }
     
-    
-    
     //MARK: Privates
     func translateText(text: String) {
-        model.getTextTranslated(text: text) { [weak self] result in
+        model.getTextTranslated { [weak self] result in
             switch result {
             case .success(let value):
                 let traduc = value.translations[0].text
