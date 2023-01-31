@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Currency
 struct Currency: Codable {
+    
     let date: String
     let info: Info
     let query: Query
@@ -18,12 +19,14 @@ struct Currency: Codable {
 
 // MARK: - Info
 struct Info: Codable {
+    
     let rate: Double
     let timestamp: Int
 }
 
 // MARK: - Query
 struct Query: Codable {
+    
     let amount: Int
     let from, to: String
 }

@@ -7,24 +7,34 @@
 
 import Foundation
 
-class WeatherLogic {
- 
-    // MARK: Actions
-    func getWeather(url: String, completionHandler: @escaping (Result<Weather,NetworkError>) -> Void) {
-        guard let url = URL(string: url) else { return }
+final class WeatherLogic {
+    
+    // MARK: - Properties
+    
+    let urlSession: URLSession
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
+    var weatherUrl: String?
+    
+    // MARK: - Api Calls
+    
+    func getWeather(completionHandler: @escaping (Result<Weather, NetworkError>) -> Void) {
+        
+        guard let weatherUrl, let url = URL(string: weatherUrl) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = urlSession.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    completionHandler(.failure(.ErrorNil))
+                    completionHandler(.failure(.errorNil))
                     return
                 }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    completionHandler(.failure(.StatusCode200))
+                    completionHandler(.failure(.statusCode))
                     return
                 }
                 guard let responseJSON = try? JSONDecoder().decode(Weather.self, from: data) else {
@@ -37,7 +47,10 @@ class WeatherLogic {
         task.resume()
     }
     
-    func getCodeWeather(code: Int)-> String {
+    // MARK: - CUSTOMS
+    
+    // swiftlint:disable cyclomatic_complexity
+    func getCodeWeather(code: Int) -> String {
         var result: String
         switch code {
         case 0:

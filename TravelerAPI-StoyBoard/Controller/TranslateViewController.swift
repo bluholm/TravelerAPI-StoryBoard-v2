@@ -7,26 +7,28 @@
 
 import UIKit
 
-final class TranslateViewController : UIViewController {
+final class TranslateViewController: UIViewController {
     
-    //MARK: Properties
+    // MARK: Properties
+    
     @IBOutlet var labelTextField: UITextView!
     @IBOutlet var buttonTranslate: UIButton!
     @IBOutlet var copyToclipBoardButton: UIButton!
     @IBOutlet var labelCopied: UILabel!
     @IBOutlet var labelTextTranslated: UITextView!
     
-    //let model = TranslateLogic(session: URLSession(configuration: .default))
     let model = TranslateLogic()
     
-    //MARK: Life Cycle Method
+    // MARK: Life Cycle Method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         labelCopied.text = ""
         loadMyView()
     }
     
-    //MARK: User Actions
+    // MARK: User Actions
+    
     @IBAction func didButtonTranslateTapped(_ sender: Any) {
         guard let text = labelTextField.text else {
             presentAlert(message: TypeError.ErrorNil)
@@ -37,7 +39,7 @@ final class TranslateViewController : UIViewController {
     }
     
     @IBAction func didButtonCopyToCliBoardTapped(_ sender: Any) {
-        if (labelTextTranslated.hasText) {
+        if labelTextTranslated.hasText {
             labelCopied.text = "copy!"
             UIPasteboard.general.string = labelTextTranslated.text
         } else {
@@ -49,7 +51,8 @@ final class TranslateViewController : UIViewController {
         }
     }
     
-    //MARK: Privates
+    // MARK: Privates
+    
     func translateText(text: String) {
         model.getTextTranslated { [weak self] result in
             switch result {
@@ -57,13 +60,13 @@ final class TranslateViewController : UIViewController {
                 let traduc = value.translations[0].text
                 self?.labelTextTranslated.text = String(traduc)
                 self?.labelTextTranslated.textColor = .black
-            case .failure(.BadUrl):
+            case .failure(.badURL):
                 self?.presentAlert(message: TypeError.badUrl)
             case .failure(.decoderJSON):
                 self?.presentAlert(message: TypeError.decoderJSON)
-            case .failure(.StatusCode200):
+            case .failure(.statusCode):
                 self?.presentAlert(message: TypeError.StatusCode200)
-            case .failure(.ErrorNil):
+            case .failure(.errorNil):
                 self?.presentAlert(message: TypeError.ErrorNil)
             }
         }

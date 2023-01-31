@@ -6,14 +6,15 @@
 //
 
 enum NetworkError: Error {
-    case BadUrl
-    case ErrorNil
-    case StatusCode200
+    
+    case badURL
+    case errorNil
+    case statusCode
     case decoderJSON
 }
 
-
 final class TypeError {
+    
     static let badUrl = "url seems to be incorrect"
     static let decoderJSON = "decoder JSon not working"
     static let StatusCode200 = "error status code HTTPRequest not working"

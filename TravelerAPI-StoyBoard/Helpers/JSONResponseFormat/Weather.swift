@@ -7,8 +7,8 @@
 
 import Foundation
 
-
 struct Weather: Codable {
+    
     let latitude, longitude, generationtimeMS: Double
     let utcOffsetSeconds: Int
     let timezone, timezoneAbbreviation: String
@@ -16,6 +16,7 @@ struct Weather: Codable {
     let currentWeather: CurrentWeather
     
     enum CodingKeys: String, CodingKey {
+        
         case latitude, longitude
         case generationtimeMS = "generationtime_ms"
         case utcOffsetSeconds = "utc_offset_seconds"
@@ -28,6 +29,7 @@ struct Weather: Codable {
 }
 
 struct CurrentWeather: Codable {
+    
     let temperature, windspeed, winddirection: Double
     let weathercode: Int
     let time: String

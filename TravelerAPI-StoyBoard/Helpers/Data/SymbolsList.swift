@@ -7,7 +7,7 @@
 
 import Foundation
 
-let symbolsList : [String:String] = [
+let symbolsList: [String: String] = [
         "AED": "United Arab Emirates Dirham",
         "AFN": "Afghan Afghani",
         "ALL": "Albanian Lek",
@@ -178,6 +178,5 @@ let symbolsList : [String:String] = [
         "ZWL": "Zimbabwean Dollar"
     ]
 
-
-let currencySymbol = [String] ( symbolsList.keys)
-let currencyName = [String] (symbolsList.values)
+let currencySymbol = [String]( symbolsList.keys)
+let currencyName = [String](symbolsList.values)

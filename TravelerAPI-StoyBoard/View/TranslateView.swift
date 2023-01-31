@@ -7,11 +7,10 @@
 
 import UIKit
 
-
 extension TranslateViewController {
     
+    // MARK: Accessible
     
-    //MARK: Accessible
     func loadMyView() {
         labelTextField.layer.cornerRadius = 10
         labelTextTranslated.layer.cornerRadius = 10
@@ -19,4 +18,3 @@ extension TranslateViewController {
     }
     
 }
-

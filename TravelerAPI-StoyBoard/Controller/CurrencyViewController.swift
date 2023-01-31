@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class CurrencyViewController : UIViewController, SymbolDelegate {
+final class CurrencyViewController: UIViewController, SymbolDelegate {
     
-    //MARK: Properties
+    // MARK: Properties
+    
     @IBOutlet var finalSymbolLabel: UILabel!
     @IBOutlet var currencyTextField: UITextField!
     @IBOutlet var oneDollarLabel: UILabel!
@@ -36,7 +37,8 @@ final class CurrencyViewController : UIViewController, SymbolDelegate {
         }
     }
     
-    //MARK: override
+    // MARK: override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         symbols.delegate = self
@@ -44,10 +46,12 @@ final class CurrencyViewController : UIViewController, SymbolDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // swiftlint:disable force_cast
         (segue.destination as! SymbolsViewController).delegate = self
     }
     
-    //MARK: Actions
+    // MARK: Actions
+    
     @IBAction func didTappedConvertButton(_ sender: Any) {
         guard let amountValue = currencyTextField.text else {
             presentAlert(message: TypeError.AmountIncorrect)
@@ -64,7 +68,8 @@ final class CurrencyViewController : UIViewController, SymbolDelegate {
         currencyTextField.resignFirstResponder()
     }
     
-    //MARK: Privates
+    // MARK: Privates
+    
     private func getRatesOnViewLoad() {
         getRates(to: currencyInitTo, amount: amountInitTo)
         loadActivityIndicator(state: false)
@@ -86,7 +91,7 @@ final class CurrencyViewController : UIViewController, SymbolDelegate {
     private func getRates (to: String, amount: Double) {
         loadActivityIndicator(state: true)
         
-        model.getRates (to: to, amount: amount) { [weak self] result in
+        model.getRates(to: to, amount: amount) { [weak self] result in
             switch result {
             case .success(let currencyREsult):
                 DispatchQueue.main.async {
@@ -94,19 +99,20 @@ final class CurrencyViewController : UIViewController, SymbolDelegate {
                     self?.currencyTarget = to
                     self?.amount = amount
                 }
-            case .failure(.BadUrl):
+            case .failure(.badURL):
                 self?.presentAlert(message: TypeError.badUrl)
             case .failure(.decoderJSON):
                 self?.presentAlert(message: TypeError.decoderJSON)
-            case .failure(.StatusCode200):
+            case .failure(.statusCode):
                 self?.presentAlert(message: TypeError.StatusCode200)
-            case .failure(.ErrorNil):
+            case .failure(.errorNil):
                 self?.presentAlert(message: TypeError.ErrorNil)
             }
         }
     }
     
-    //MARK: SymbolModelDelegate
+    // MARK: SymbolModelDelegate
+    
     func didSelectSymbol(symbol: String) {
         finalSymbolLabel.text = symbol
         updateCurrency(to: symbol, amount: amount)

@@ -9,14 +9,12 @@ import UIKit
 
 class ViewController: UITabBarController {
 
-    //@IBOutlet var translateButton: UIButton!
+    // @IBOutlet var translateButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //translateButton.layer.cornerRadius = 8
+        // translateButton.layer.cornerRadius = 8
     }
 
-
 }
-

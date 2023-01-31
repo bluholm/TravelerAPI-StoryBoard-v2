@@ -11,20 +11,24 @@ protocol SymbolDelegate: AnyObject {
     func didSelectSymbol(symbol: String)
 }
 
-
 final class SymbolsViewController: UIViewController {
     
-    //MARK: Properties
+    // MARK: Properties
+    
     weak var delegate: SymbolDelegate?
     
-    //MARK: Life Cycle Method
+    // MARK: Life Cycle Method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 }
 
-//MARK: SymbolsViewController Delegate and Datasource
-extension SymbolsViewController : UITableViewDataSource, UITableViewDelegate {
+// MARK: SymbolsViewController Delegate and Datasource
+
+extension SymbolsViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currencySymbol.count
     }

@@ -8,6 +8,7 @@
 import Foundation
 
 final class URLEncodable {
+    
     static func encode(with baseURL: URL, and parameters: [(String, Any)]?) -> URL {
         guard var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false),
               let parameters = parameters,

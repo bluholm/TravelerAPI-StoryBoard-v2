@@ -7,17 +7,19 @@
 
 import Foundation
 
-
 // MARK: - Translate
 struct Translate: Codable {
+    
     let translations: [Translation]
 }
 
 // MARK: - Translation
 struct Translation: Codable {
+    
     let detectedSourceLanguage, text: String
 
     enum CodingKeys: String, CodingKey {
+        
         case detectedSourceLanguage = "detected_source_language"
         case text
     }

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIViewController {
     
     func presentAlert(message: String) {
