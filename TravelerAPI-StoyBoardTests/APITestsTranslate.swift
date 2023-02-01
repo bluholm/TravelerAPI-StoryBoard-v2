@@ -29,12 +29,31 @@ final class TravelerAPI_StoyBoardTests: XCTestCase {
     
     // MARK: - Test TranslateLogic
     
-    func testGivenGoodDataWhenREquestThenExpectNoError() {
-        
+    func testGivenDataNilErrorNotNilWhenREquestThenExpectError() {
+     
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.TranslateCorrectJsonData)
+            return (FakeResponseData.responseOk, nil, FakeResponseData.error)
         }
         
+        translateService.getTextTranslated { (result) in
+            switch result {
+            case .success:
+                XCTFail("error is expected")
+            case .failure(let error):
+                XCTAssertEqual(error, .errorNil)
+            }
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2)
+              
+    }
+    
+    func testGivenGoodDataWhenREquestThenExpectNoError() {
+
+        URLProtocolMock.requestHandler = { _ in
+            return (FakeResponseData.responseOk, FakeResponseData.TranslateCorrectJsonData, nil)
+        }
+
         translateService.getTextTranslated { (result) in
             switch result {
             case .success(let post):
@@ -45,15 +64,15 @@ final class TravelerAPI_StoyBoardTests: XCTestCase {
             self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2)
-        
+
     }
-    
+
     func testGivenBadDataWhenREquestThenExpectError() {
-        
+
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.IncorrectDataJson)
+            return (FakeResponseData.responseOk, FakeResponseData.IncorrectDataJson, nil)
         }
-        
+
         translateService.getTextTranslated { (result) in
             switch result {
             case .success:
@@ -64,15 +83,15 @@ final class TravelerAPI_StoyBoardTests: XCTestCase {
             self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2)
-        
+
     }
-    
+
     func testGivenBadAnswerWhenREquestThenExpectError() {
-        
+
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseKO!, nil)
+            return (FakeResponseData.responseKO!, nil, nil)
         }
-        
+
         translateService.getTextTranslated { (result) in
             switch result {
             case .success:
@@ -83,7 +102,7 @@ final class TravelerAPI_StoyBoardTests: XCTestCase {
             self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2)
-        
+
     }
     
 }

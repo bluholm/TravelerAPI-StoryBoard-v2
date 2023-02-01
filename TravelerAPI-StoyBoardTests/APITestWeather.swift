@@ -30,10 +30,29 @@ final class APITestWeather: XCTestCase {
     
     // MARK: - Test Logic
     
+    func testGivenDataNilErrorNotNilWhenREquestThenExpectError() {
+     
+        URLProtocolMock.requestHandler = { _ in
+            return (FakeResponseData.responseOk, nil, FakeResponseData.error)
+        }
+        
+        weatherService.getWeather { (result) in
+            switch result {
+            case .success:
+                XCTFail("error is expected")
+            case .failure(let error):
+                XCTAssertEqual(error, .errorNil)
+            }
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2)
+              
+    }
+    
     func testGivenGoodDataWhenREquestThenExpectNoError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.WeatherCorrectJsonData)
+            return (FakeResponseData.responseOk, FakeResponseData.WeatherCorrectJsonData, nil)
         }
         
         weatherService.getWeather { (result) in
@@ -52,7 +71,7 @@ final class APITestWeather: XCTestCase {
     func testGivenBadDataWhenREquestThenExpectError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.IncorrectDataJson)
+            return (FakeResponseData.responseOk, FakeResponseData.IncorrectDataJson, nil)
         }
         
         weatherService.getWeather { (result) in
@@ -71,7 +90,7 @@ final class APITestWeather: XCTestCase {
     func testGivenBadAnswerWhenREquestThenExpectError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseKO!, nil)
+            return (FakeResponseData.responseKO, nil, nil)
         }
         
         weatherService.getWeather { (result) in

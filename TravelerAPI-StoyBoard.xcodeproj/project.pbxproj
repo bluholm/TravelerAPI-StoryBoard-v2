@@ -15,6 +15,7 @@
 		0E100933292DE62B00435B37 /* URLProtocolFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E100932292DE62B00435B37 /* URLProtocolFake.swift */; };
 		0E1AFDD72924EBA500451C9D /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AFDD62924EBA500451C9D /* Symbols.swift */; };
 		0E1AFDD92924F22A00451C9D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AFDD82924F22A00451C9D /* Error.swift */; };
+		0E245856298A7325009062E8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AFDD82924F22A00451C9D /* Error.swift */; };
 		0E3904A72983122900F6542E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0E3904A62983122900F6542E /* .swiftlint.yml */; };
 		0E3FF1A82925FC5300140DB1 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3FF1A72925FC5300140DB1 /* AlertExtension.swift */; };
 		0E43EA0B29332667007FAC67 /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E43EA0A29332667007FAC67 /* Weather.json */; };
@@ -153,6 +154,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0E484EE02989A3620084E1E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E3FF1A72925FC5300140DB1 /* AlertExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0E86FA87291F45070034B97E = {
 			isa = PBXGroup;
 			children = (
@@ -175,14 +184,12 @@
 		0E86FA92291F45070034B97E /* TravelerAPI-StoyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				0E458AB329232B5600EE7EBA /* Helpers */,
-				0E86FAA9291F45460034B97E /* Controller */,
-				0E86FAA8291F45420034B97E /* View */,
 				0E86FAA7291F45350034B97E /* Model */,
-				0E86FA9C291F45080034B97E /* Assets.xcassets */,
-				0E86FAA1291F45080034B97E /* Info.plist */,
+				0E86FAA8291F45420034B97E /* View */,
+				0E86FAA9291F45460034B97E /* Controller */,
 				0E86FAAA291F454D0034B97E /* Supporting Files */,
-				0E3FF1A72925FC5300140DB1 /* AlertExtension.swift */,
+				0E484EE02989A3620084E1E0 /* Extensions */,
+				0E86FAA1291F45080034B97E /* Info.plist */,
 			);
 			path = "TravelerAPI-StoyBoard";
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 		0E86FAA7291F45350034B97E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E458AB329232B5600EE7EBA /* Helpers */,
 				0EA30919291F70710096C4FA /* TranslateLogic.swift */,
 				0E458A7F2921D2E400EE7EBA /* CurrencyLogic.swift */,
 				0E1008F52927468D00435B37 /* WeatherLogic.swift */,
@@ -200,6 +208,7 @@
 		0E86FAA8291F45420034B97E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E86FA9C291F45080034B97E /* Assets.xcassets */,
 				0E86FA9E291F45080034B97E /* LaunchScreen.storyboard */,
 				0E86FA99291F45080034B97E /* Main.storyboard */,
 				0EA3091F291F97930096C4FA /* TranslateView.swift */,
@@ -358,6 +367,7 @@
 				0E43EA1629334334007FAC67 /* APITestCurrency.swift in Sources */,
 				0E43EA0F293326D6007FAC67 /* APITestWeather.swift in Sources */,
 				0E10092E292CD47300435B37 /* FakeResponseData.swift in Sources */,
+				0E245856298A7325009062E8 /* Error.swift in Sources */,
 				0E100933292DE62B00435B37 /* URLProtocolFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,8 +25,8 @@ final class FakeResponseData {
 
     // MARK: - ERRORS
 
-    static let error: Error? = nil
-    
+    static let error: NetworkError = .errorNil
+
     // MARK: - CORRECT DATA
     static let url: URL = URL(string: urls)!
 
@@ -52,4 +52,7 @@ final class FakeResponseData {
     // MARK: - INCORRECT DATA
 
     static let IncorrectDataJson = "error".data(using: .utf8)
+    
+    static let to = "EUR"
+    static let amount = 133.0
 }

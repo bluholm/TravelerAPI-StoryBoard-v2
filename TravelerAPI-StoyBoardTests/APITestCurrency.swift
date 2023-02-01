@@ -30,13 +30,32 @@ final class APITestCurrency: XCTestCase {
     
     // MARK: - Test Logic
     
+    func testGivenDataNilErrorNotNilWhenREquestThenExpectError() {
+     
+        URLProtocolMock.requestHandler = { _ in
+            return (FakeResponseData.responseOk, nil, FakeResponseData.error)
+        }
+        
+        currencyLogic.getRates(to: FakeResponseData.to, amount: FakeResponseData.amount) { (result) in
+            switch result {
+            case .success:
+                XCTFail("error is expected")
+            case .failure(let error):
+                XCTAssertEqual(error, .errorNil)
+            }
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2)
+              
+    }
+    
     func testGivenGoodDataWhenREquestThenExpectNoError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.CurrencyCorrectJsonData)
+            return (FakeResponseData.responseOk!, FakeResponseData.CurrencyCorrectJsonData, nil)
         }
         
-        currencyLogic.getRates(to: "EUR", amount: 133) { (result) in
+        currencyLogic.getRates(to: FakeResponseData.to, amount: FakeResponseData.amount) { (result) in
             switch result {
             case .success(let post):
                 XCTAssertNotNil(post)
@@ -52,10 +71,10 @@ final class APITestCurrency: XCTestCase {
     func testGivenBadDataWhenREquestThenExpectError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseOk!, FakeResponseData.IncorrectDataJson)
+            return (FakeResponseData.responseOk!, FakeResponseData.IncorrectDataJson, nil)
         }
         
-        currencyLogic.getRates(to: "EUR", amount: 133) { (result) in
+        currencyLogic.getRates(to: FakeResponseData.to, amount: FakeResponseData.amount) { (result) in
             switch result {
             case .success:
                 XCTFail("error is expected")
@@ -71,10 +90,10 @@ final class APITestCurrency: XCTestCase {
     func testGivenBadAnswerWhenREquestThenExpectError() {
         
         URLProtocolMock.requestHandler = { _ in
-            return (FakeResponseData.responseKO!, nil)
+            return (FakeResponseData.responseKO!, nil, nil)
         }
         
-        currencyLogic.getRates(to: "EUR", amount: 133) { (result) in
+        currencyLogic.getRates(to: FakeResponseData.to, amount: FakeResponseData.amount) { (result) in
             switch result {
             case .success:
                 XCTFail("error is expected")
