@@ -25,9 +25,16 @@ final class TranslateViewController: UIViewController {
         super.viewDidLoad()
         labelCopied.text = ""
         loadMyView()
+        
+        labelTextField.delegate = self
+
     }
     
     // MARK: User Actions
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        labelTextField.resignFirstResponder()
+    }
     
     @IBAction func didButtonTranslateTapped(_ sender: Any) {
         guard let text = labelTextField.text else {
@@ -71,4 +78,13 @@ final class TranslateViewController: UIViewController {
             }
         }
     }
+}
+
+extension TranslateViewController: UITextViewDelegate {
+    
+        public func textViewShouldReturn(_ textView: UITextView) -> Bool {
+            textView.resignFirstResponder()
+            return true
+        }
+    
 }

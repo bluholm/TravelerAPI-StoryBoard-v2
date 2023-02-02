@@ -69,7 +69,6 @@ final class WeatherViewController: UIViewController {
         toggleIndicatorUp.isHidden = true
         labelTemperatureUp.text = "\(temperature) °"
         imageWeatherUp.image = UIImage(systemName: icon, withConfiguration: UIImage.SymbolConfiguration(pointSize: 60))
-        
     }
     
     func displayWeatherDown(icon: String, temperature: Double) {
